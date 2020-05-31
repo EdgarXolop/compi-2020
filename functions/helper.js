@@ -1,16 +1,19 @@
 const { tags } = require('./config.json')
 
-const generalTag = /<\/?!?\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\/?>/gm
-const startOfTag = /<\/?/mg
-const endOfTag = /\/?>/mg
-const openTag = /<!?\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)>/gm
-const autoClosedTag = /<\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\/>/gm
-const commentStartTag = /<!--.*?/gm
-const commentEndTag = /.*?-->/gm
-const commentTag = /<!--[^>]*-->/gm
-const closeTag = /<\/\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\/?>/gm
+// unused vars
+
+const generalTag = /#@\$?!?\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\$?@#/gm
+const commentStartTag = /#@!--.*?/gm
+const commentEndTag = /.*?--@#/gm
 const contentOfTag = /((\s*(\w+\s*=\s*(?:".*?"|'.*?'+))?)+\s*|\s*)/g
-const singleTag = /(\w*\=(\"[^"]+\"|\'[^']+\'))/g
+
+const startOfTag = /#@\$?/mg
+const endOfTag = /\$?@#/mg
+const openTag = /#@!?\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)@#/gm
+const autoClosedTag = /#@\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\$@#/gm
+const closeTag = /#@\$\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\$?@#/gm
+const commentTag = /#@!--[^>]*--@#/gm
+const singleTag = /(\w*=("[^"]+"|'[^']+'))/g
 
 
 function getKeyByValue(object, value) { 
@@ -74,6 +77,7 @@ function getPosibleTag(value)
 {   
     let tagName = value.replace(startOfTag,'').replace(endOfTag,'').trim().split(' ')[0]
     let tagFound = false
+
     tags.forEach(tag =>{
         if (tag.name.indexOf(tagName) !== -1)
         {
@@ -85,7 +89,7 @@ function getPosibleTag(value)
         tags.forEach(tag =>{
             if (tagName.indexOf(tag.name) !== -1) tagName = tag.name
         })
-
+        
     return tagName
 }
 
@@ -129,17 +133,17 @@ function getTokenValidationInfo(value){
     {
         info.tagType = getKeyByValue(LineType,LineType.CONTENT_LINE)
     }
-    else if( value.startsWith('</') )
+    else if( value.startsWith('#@$') )
     {
         if( value.match(closeTag) ) info.tagType = getKeyByValue(LineType,LineType.CLOSED_TAG)
-        else info = { tagType: getKeyByValue(LineType,LineType.INVALID_TAG), message: `Talvez intentaste escribir </${getPosibleTag(value)}>` }
+        else info = { tagType: getKeyByValue(LineType,LineType.INVALID_TAG), message: `Talvez intentaste escribir #@$${getPosibleTag(value)}@#` }
     }
-    else if( value.match('<') || value.endsWith('>') )
+    else if( value.match('#@') || value.endsWith('@#') )
     {
         if( value.match(openTag) ) info.tagType = getKeyByValue(LineType,LineType.OPEN_TAG)
         else if( value.match(autoClosedTag) ) info.tagType = getKeyByValue(LineType,LineType.AUTO_CLOSED_TAG)
         else if( value.match(commentTag) ) info.tagType = getKeyByValue(LineType,LineType.COMMENT_TAG)
-        else info = { tagType: getKeyByValue(LineType,LineType.INVALID_TAG), message: `Talvez intentaste escribir <${getPosibleTag(value)}>` }
+        else info = { tagType: getKeyByValue(LineType,LineType.INVALID_TAG), message: `Talvez intentaste escribir #@${getPosibleTag(value)}@#` }
     }
     else
     {
@@ -187,7 +191,7 @@ const removeWhiteContent= (data) =>{
 
     data.content = data.content.replace(/^(\s*|\n)/gm, "");
 
-    //console.log("#####COMMENTS REMOVED - <!-- --> #####")
+    //console.log("#####COMMENTS REMOVED - #@!-- --> #####")
 
     //console.log(content)
 }
@@ -200,7 +204,7 @@ const removeComments = (data) => {
 
     data.content = data.content.replace(commentTag, "");
 
-    //console.log("#####COMMENTS REMOVED - <!-- --> #####")
+    //console.log("#####COMMENTS REMOVED - #@!-- --> #####")
 
     //console.log(content)
 
@@ -219,7 +223,7 @@ const generateTokens = (data) => {
 
     lines.forEach((line,numberOfLine) => {
         //TODO: Change to #
-        line = line.replace(/</mg,'\n<').replace(/>/mg,'>\n').trim()
+        line = line.replace(/#@/mg,'\n#@').replace(/@#/mg,'@#\n').trim()
 
         tokens = line.split('\n')
 
@@ -227,7 +231,7 @@ const generateTokens = (data) => {
 
         tokens.forEach(token=>{
 
-            if ( token.startsWith('<') && token.endsWith('>') )
+            if ( token.startsWith('#@') && token.endsWith('@#') )
             {
                 if(content) {
                     //console.log("TOKEN FOUND " + content)
@@ -245,7 +249,7 @@ const generateTokens = (data) => {
 
                 content = null
             }
-            else if(token.startsWith('<'))
+            else if(token.startsWith('#@'))
             {   
                 if(content) {
                     //console.log("TOKEN FOUND " + content)
@@ -257,7 +261,7 @@ const generateTokens = (data) => {
                 content = token
                 //console.log("TOKEN BUILDING " + content)
 
-            }else if(token.endsWith('>'))
+            }else if(token.endsWith('@#'))
             {
                 content += " " + token
                 //console.log("TOKEN BUILDING " + content)
@@ -354,6 +358,7 @@ const buildTokensInfo = data => {
             tagType: info.tagType,
             attributes: info.attributes,
             details: info.details,
+            message: info.message
         }
 
         udpatedTokens.push(tempToken)

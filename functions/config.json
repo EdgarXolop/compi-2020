@@ -1,547 +1,474 @@
 {
    "tags":[
       {
-         "name":"!doctype",
+         "name":"!TIPODOC",
+         "alias": "!doctype",
          "ignore":true,
          "autoClose":false
       },
       {
-         "name":"a",
+         "name":"enlace",
+         "alias": "a",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"abbr",
+         "name":"abreviacion",
+         "alias": "abbr",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"address",
+         "name":"direccion",
+         "alias": "address",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"area",
+         "alias": "area",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"article",
+         "name":"articulo",
+         "alias": "article",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"aside",
+         "name":"aparte",
+         "alias": "aside",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"audio",
+         "alias": "audio",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"b",
+         "name":"negrita",
+         "alias": "b",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"base",
+         "name":"base-url",
+         "alias": "base",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"bdi",
+         "name":"cuerpo",
+         "alias": "body",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"bdo",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"blockquote",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"body",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"br",
+         "name":"salto-linea",
+         "alias": "br",
          "ignore":false,
          "autoClose":true
       },
       {
-         "name":"button",
+         "name":"boton",
+         "alias":"button",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"canvas",
+         "name":"lienzo",
+         "alias":"canvas",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"caption",
+         "name":"titulo",
+         "alias":"caption",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"cite",
+         "name":"cita",
+         "alias":"cite",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"code",
+         "name":"codigo",
+         "alias":"code",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"col",
+         "name":"columna",
+         "alias":"column",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"colgroup",
+         "name":"columna-grupo",
+         "alias":"colgroup",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"command",
+         "name":"auto-completable",
+         "alias":"datalist",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"datalist",
+         "name":"detalle",
+         "alias":"details",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"dd",
+         "name":"dialogo",
+         "alias":"dl",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"del",
+         "name":"division",
+         "alias":"div",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"details",
+         "name":"enfatizar",
+         "alias":"em",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"dfn",
+         "name":"contenedor",
+         "alias":"dl",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"dialog",
+         "name":"grupo-campo",
+         "alias":"filedset",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"div",
+         "name":"titulo-figura",
+         "alias":"figcaption",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"dl",
+         "name":"figura",
+         "alias":"figure",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"dt",
+         "name":"pie-pagina",
+         "alias":"footer",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"em",
+         "name":"formulario",
+         "alias":"form",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"embed",
+         "name":"titulo-1",
+         "alias": "h1",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"fieldset",
+         "name":"titulo-2",
+         "alias": "h2",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"figcaption",
+         "name":"titulo-3",
+         "alias": "h3",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"figure",
+         "name":"titulo-4",
+         "alias": "h4",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"footer",
+         "name":"titulo-5",
+         "alias": "h5",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"form",
+         "name":"titulo-6",
+         "alias": "h6",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"h1",
+         "name":"principal",
+         "alias": "head",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"h2",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"h3",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"h4",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"h5",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"h6",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"head",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"header",
+         "name":"encabezado",
+         "alias": "header",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"hgroup",
+         "alias": "agrupar-titulo",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"hr",
+         "alias":"linea-quiebre",
          "ignore":false,
-         "autoClose":false
+         "autoClose":true
       },
       {
          "name":"html",
+         "alias":"html",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"i",
+         "name":"italico",
+         "alias":"i",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"iframe",
+         "name":"documento-linea",
+         "alias":"iframe",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"img",
+         "alias":"imagen",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"input",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"ins",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"kbd",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"keygen",
+         "name":"entrada",
+         "alias":"input",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"label",
+         "alias":"etiqueta",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"legend",
+         "alias":"leyenda",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"li",
+         "name":"elemento-lista",
+         "alias":"li",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"link",
+         "name":"enlace",
+         "alias":"link",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"map",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"mark",
+         "name":"marcar",
+         "alias":"mark",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"menu",
+         "alias":"menu",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"meta",
+         "name":"metadato",
+         "alias":"meta",
          "ignore":false,
          "autoClose": true
       },
       {
-         "name":"meter",
+         "name":"navegador",
+         "alias": "nav",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"nav",
+         "name":"opcion",
+         "alias": "option",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"noscript",
+         "name": "parrafo",
+         "alias":"p",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"objet",
+         "name": "pre-formateado",
+         "alias":"pre",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"ol",
+         "name": "citacion",
+         "alias":"q",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"optgroup",
+         "name": "instruccion",
+         "alias":"script",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"option",
+         "name":"seccion",
+         "alias":"section",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"output",
+         "name":"seleccion",
+         "alias":"select",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"p",
+         "name":"text-queno",
+         "alias":"small",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"param",
+         "name":"elemento",
+         "alias":"source",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"pre",
+         "name":"marcador",
+         "alias":"span",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"progress",
+         "name":"remarcar",
+         "alias":"strong",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"q",
+         "name":"estilo",
+         "alias":"style",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"rp",
+         "name":"titulo-detalle",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"rt",
+         "name":"super",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"ruby",
+         "name":"tabla",
+         "alias":"table",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"s",
+         "name":"tabla-cuerpo",
+         "alias":"tbody",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"samp",
+         "name":"tabla-dato",
+         "alias":"td",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"script",
+         "name":"area-texto",
+         "alias":"textarea",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"section",
+         "name":"pie-tabla",
+         "alias":"tfoot",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"select",
+         "name":"tabla-titulo",
+         "alias":"th",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"small",
+         "name":"tabla-principal",
+         "alias":"thead",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"source",
+         "name":"titulo",
+         "alias":"title",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"span",
+         "name":"tabla-linea",
+         "alias":"tr",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"strong",
+         "name":"subtitulo",
+         "alias":"track",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"style",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"sub",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"summary",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"sup",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"table",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"tbody",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"td",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"textarea",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"tfoot",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"th",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"thead",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"time",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"title",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"tr",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"track",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"ul",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"var",
+         "name":"lista",
+         "alias":"ul",
          "ignore":false,
          "autoClose":false
       },
       {
          "name":"video",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"wbr",
+         "alias":"video",
          "ignore":false,
          "autoClose":false
       }
