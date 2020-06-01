@@ -8,7 +8,9 @@ const {
     buildTokensInfo,
     generateTokens,
     parseToDataObject,
-    reomveUnnecessaryTokens
+    reomveUnnecessaryTokens,
+    getErrors,
+    syntaxisAnalisis
 } = require('./helper')
 
 const app = express();
@@ -17,9 +19,10 @@ var jsonParser = bodyParser.json()
 app.use(cors({ origin: true }));
 
 
-app.post('/analysis/lexical', jsonParser, (req, res) => {
+app.post('/analysis', jsonParser, (req, res) => {
     
     var buffer = new Buffer(req.body.htmlFile,'base64')
+    var errors = []
 
     var data = parseToDataObject({
         content: buffer.toString('utf-8')
@@ -28,7 +31,10 @@ app.post('/analysis/lexical', jsonParser, (req, res) => {
     generateTokens(data)
     buildTokensInfo(data)
 
-    return res.jsonp({tokens : reomveUnnecessaryTokens(data.tokens)})
+    errors = syntaxisAnalisis(data.tokens)
+    errors = errors.concat(getErrors(data.tokens))
+
+    return res.jsonp({tokens : reomveUnnecessaryTokens(data.tokens), errors: errors})
 });
 
 

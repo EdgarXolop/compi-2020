@@ -181,37 +181,37 @@
          "autoClose":false
       },
       {
-         "name":"titulo-1",
+         "name":"titulo1",
          "alias": "h1",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"titulo-2",
+         "name":"titulo2",
          "alias": "h2",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"titulo-3",
+         "name":"titulo3",
          "alias": "h3",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"titulo-4",
+         "name":"titulo4",
          "alias": "h4",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"titulo-5",
+         "name":"titulo5",
          "alias": "h5",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"titulo-6",
+         "name":"titulo6",
          "alias": "h6",
          "ignore":false,
          "autoClose":false

@@ -342,6 +342,106 @@ function getAttributesInfo(info,contentTag)
     }
 }
 
+
+/**
+ * getErrors - returns the attributes info
+ * @param {Array} tokens 
+ */
+function syntaxisAnalisis(tokens)
+{
+    let formattedErrors = []
+    let cloneTokens = tokens.slice()
+    let previousToken = null
+    let currentToken = null
+    let nextToken = null
+
+    while( cloneTokens.length > 0 )
+    {
+     
+        for (let i = 0; i < cloneTokens.length; i++) 
+        {
+            previousToken = cloneTokens[i-1];
+            currentToken = cloneTokens[i];
+            nextToken = cloneTokens[i+1];
+
+            if(currentToken.tagType ===  getKeyByValue(LineType,LineType.OPEN_TAG) )
+            {
+
+
+                if( currentToken.details.autoClose && nextToken 
+                    && nextToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG) 
+                    && currentToken.details.name === nextToken.details.name )
+                {
+
+                    cloneTokens.slice(i+1,1)
+                    cloneTokens.slice(i,1)
+                    i = cloneTokens.length+1
+                }
+                if( currentToken.details.autoClose  )
+                {
+                    cloneTokens.slice(i,1)
+                    i = cloneTokens.length+1
+                }
+                else if( nextToken 
+                    && nextToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG) 
+                    && currentToken.details.name === nextToken.details.name )
+                {
+
+                    cloneTokens.slice(i+1,1)
+                    i = cloneTokens.length+1
+                }
+                else
+                {
+                    cloneTokens = []
+                    if( !currentToken.details.ignore )
+                        formattedErrors.push("Etiqueta sin cerrar " + currentToken.details.name)
+                }
+
+                
+            }
+            if(currentToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG && previousToken && previousToken.tagType ===  getKeyByValue(LineType,LineType.INVALID_TAG) ) )
+            {
+                if( !currentToken.details.ignore )
+                    formattedErrors.push("Error cerrando la etiqueta. " + currentToken.details.name)
+                    
+                cloneTokens.slice(i,1)
+                cloneTokens.slice(i,-1)
+            }
+            else 
+            {
+                cloneTokens.slice(i,1)
+            }
+
+        }
+    }
+    
+    return formattedErrors
+}
+
+
+/**
+ * getErrors - returns the attributes info
+ * @param {Array} tokens 
+ */
+function getErrors(tokens)
+{
+    let formattedErrors = []
+
+    tokens.forEach(token => {
+
+        if( token.tagType ===  getKeyByValue(LineType,LineType.INVALID_TAG) )
+            formattedErrors.push(`Linea: ${token.line}. Error: ${token.value} ${token.message}`)
+
+        if( token.attributes )
+            token.attributes.forEach(a => {
+                if( !a.valid )
+                    formattedErrors.push(`Linea: ${token.line}. Error attributo invalido: ${ a.name ? a.name : "" } ${a.value ? a.value : ""} `)
+            } )
+    })
+
+    return formattedErrors
+}
+
 /**
  * analyzes the token info
  * @param {Data} data 
@@ -393,5 +493,7 @@ module.exports = {
     reomveUnnecessaryTokens,
     removeWhiteContent,
     removeComments,
-    parseToDataObject
+    parseToDataObject,
+    getErrors,
+    syntaxisAnalisis
 }
