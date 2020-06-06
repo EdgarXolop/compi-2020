@@ -4,7 +4,7 @@
       <form class="form-inline" @submit.prevent="onSubmit" >
         <div class="form-group mb-2">
           <label for="archivo" class="sr-only">Archivo</label>
-          <input type="file" class="form-control-plaintext" id="archivo" required accept=".txt">
+          <input type="file" class="form-control-plaintext" id="archivo" required>
         </div>
         <button type="submit" class="btn btn-primary mb-2">Analizar Archivo</button>
       </form>

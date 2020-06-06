@@ -1,5 +1,6 @@
 const { tags } = require('./config.json')
 
+
 // unused vars
 
 const generalTag = /#@\$?!?\w+((\s+\w+(\s*=\s*(?:"?.*?"?|'?.*?'?|[\^'">\s]+))?)+\s*|\s*)\$?@#/gm
@@ -350,69 +351,81 @@ function getAttributesInfo(info,contentTag)
 function syntaxisAnalisis(tokens)
 {
     let formattedErrors = []
-    let cloneTokens = tokens.slice()
-    let previousToken = null
+    let cloneTokens = reomveUnnecessaryTokens(tokens)
     let currentToken = null
     let nextToken = null
 
+    let lastcountval = null
+
     while( cloneTokens.length > 0 )
     {
-     
+
         for (let i = 0; i < cloneTokens.length; i++) 
         {
             previousToken = cloneTokens[i-1];
             currentToken = cloneTokens[i];
             nextToken = cloneTokens[i+1];
 
-            if(currentToken.tagType ===  getKeyByValue(LineType,LineType.OPEN_TAG) )
+
+            if( currentToken 
+                && !currentToken.details )
+            {                
+                cloneTokens = []
+                formattedErrors.push("Error Etiqueta Invalida: " + currentToken.value + " Linea " + currentToken.line )
+                i = cloneTokens.length+1
+                break
+            }    
+            
+            
+            if(currentToken.details.ignore || currentToken.details.autoClose)
             {
-
-
-                if( currentToken.details.autoClose && nextToken 
-                    && nextToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG) 
-                    && currentToken.details.name === nextToken.details.name )
-                {
-
-                    cloneTokens.slice(i+1,1)
-                    cloneTokens.slice(i,1)
+                cloneTokens.splice(i,1)
+                break
+            }
+            
+            if ( currentToken.tagType === getKeyByValue(LineType,LineType.OPEN_TAG) 
+                && nextToken 
+                && nextToken.tagType === getKeyByValue(LineType,LineType.CLOSED_TAG) )
+            {
+                if( nextToken 
+                    && !nextToken.details )
+                {                
+                    cloneTokens = []
+                    formattedErrors.push("Error Etiqueta Invalida: " + nextToken.value + " Linea " + nextToken.line )
                     i = cloneTokens.length+1
-                }
-                if( currentToken.details.autoClose  )
-                {
-                    cloneTokens.slice(i,1)
-                    i = cloneTokens.length+1
-                }
-                else if( nextToken 
-                    && nextToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG) 
-                    && currentToken.details.name === nextToken.details.name )
-                {
+                    break
+                } 
 
-                    cloneTokens.slice(i+1,1)
-                    i = cloneTokens.length+1
-                }
-                else
+
+                if(currentToken.details.name !== nextToken.details.name)
                 {
                     cloneTokens = []
-                    if( !currentToken.details.ignore )
-                        formattedErrors.push("Etiqueta sin cerrar " + currentToken.details.name)
+
+                    formattedErrors.push("Error Cerrando Etiqueta: " + currentToken.value + " Linea " + currentToken.line )
+                    break
                 }
 
                 
-            }
-            if(currentToken.tagType ===  getKeyByValue(LineType,LineType.CLOSED_TAG && previousToken && previousToken.tagType ===  getKeyByValue(LineType,LineType.INVALID_TAG) ) )
-            {
-                if( !currentToken.details.ignore )
-                    formattedErrors.push("Error cerrando la etiqueta. " + currentToken.details.name)
-                    
-                cloneTokens.slice(i,1)
-                cloneTokens.slice(i,-1)
-            }
-            else 
-            {
-                cloneTokens.slice(i,1)
+                cloneTokens.splice(i,1)
+                cloneTokens.splice(i,1)
+
             }
 
+            if( currentToken.tagType === getKeyByValue(LineType,LineType.CLOSED_TAG) && i === 0)
+            {
+                
+                cloneTokens = []
+
+                formattedErrors.push("Error Cerrando Etiqueta: " + currentToken.value + " Linea " + currentToken.line )
+                
+                break
+            }
+            
         }
+
+        if(lastcountval === cloneTokens.length ) return
+
+        lastcountval = cloneTokens.length
     }
     
     return formattedErrors
@@ -472,15 +485,10 @@ const buildTokensInfo = data => {
  * @param {Data} data 
  */
 const reomveUnnecessaryTokens = (tokens) => {
-    let formattedTokens = []
-
-    tokens.forEach(token => {
-
-        if( token.tagType !==  getKeyByValue(LineType,LineType.CONTENT_LINE) && token.tagType !==  getKeyByValue(LineType,LineType.COMMENT_TAG) )
-            formattedTokens.push(token)
+    return tokens.filter(token => {
+        return token.tagType !==  getKeyByValue(LineType,LineType.CONTENT_LINE) && token.tagType !==  getKeyByValue(LineType,LineType.COMMENT_TAG)
     })
 
-    return formattedTokens
 }
 
 const parseToDataObject = (json) => {
