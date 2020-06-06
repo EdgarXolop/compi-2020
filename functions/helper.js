@@ -423,7 +423,7 @@ function syntaxisAnalisis(tokens)
             
         }
 
-        if(lastcountval === cloneTokens.length ) return
+        if(lastcountval === cloneTokens.length ) return []
 
         lastcountval = cloneTokens.length
     }
