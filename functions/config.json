@@ -229,14 +229,14 @@
          "autoClose":false
       },
       {
-         "name":"hgroup",
-         "alias": "agrupar-titulo",
+         "name": "agrupar-titulo",
+         "alias":"hgroup",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"hr",
-         "alias":"linea-quiebre",
+         "name":"linea-quiebre",
+         "alias":"hr",
          "ignore":false,
          "autoClose":true
       },
@@ -271,14 +271,14 @@
          "autoClose":false
       },
       {
-         "name":"label",
-         "alias":"etiqueta",
+         "name":"etiqueta",
+         "alias":"label",
          "ignore":false,
          "autoClose":false
       },
       {
-         "name":"legend",
-         "alias":"leyenda",
+         "name":"leyenda",
+         "alias":"legend",
          "ignore":false,
          "autoClose":false
       },
@@ -392,11 +392,7 @@
       },
       {
          "name":"titulo-detalle",
-         "ignore":false,
-         "autoClose":false
-      },
-      {
-         "name":"super",
+         "alias": "summary",
          "ignore":false,
          "autoClose":false
       },
